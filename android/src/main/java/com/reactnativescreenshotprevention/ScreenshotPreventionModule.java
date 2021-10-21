@@ -8,10 +8,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 
+import android.app.Activity;
 import android.view.WindowManager;
-
-import com.facebook.react.bridge.Callback;
-
 
 @ReactModule(name = ScreenshotPreventionModule.NAME)
 public class ScreenshotPreventionModule extends ReactContextBaseJavaModule {
@@ -32,7 +30,6 @@ public class ScreenshotPreventionModule extends ReactContextBaseJavaModule {
 
         if(activity != null){
             activity.runOnUiThread(() -> {
-                mounted = mount;
                 if(mount){
                     activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 }
