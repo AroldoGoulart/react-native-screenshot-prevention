@@ -1,6 +1,6 @@
 {
   "name": "react-native-screenshot-prevention",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A implementation of FLAG_SECURE in Android and ScreenShieldKit to IOS for prevent screenshots",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -46,11 +46,13 @@
     "url": "https://github.com/SnowLew/react-native-screenshot-prevention"
   },
   "author": "Aroldo Goulart <aroldogooulart@gmail.com> (https://github.com/SnowLew)",
-  "contributors": [{
-    "name" : "Jaqueline Gonzaga",
-    "url" : "https://github.com/gonzagajaque",
-    "email": "jaquelinesgonzaga@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Jaqueline Gonzaga",
+      "url": "https://github.com/gonzagajaque",
+      "email": "jaquelinegonzaga@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SnowLew/react-native-screenshot-prevention/issues"
