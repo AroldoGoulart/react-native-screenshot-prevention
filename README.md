@@ -1,6 +1,6 @@
 # react-native-screenshot-prevention
 
-A implementation of FLAG_SECURE in Android and ScreenShieldKit to IOS for prevent screenshots
+A simple implementation of FLAG_SECURE in Android and ScreenShieldKit to IOS for prevent screenshots
 
 ## Installation
 
@@ -8,14 +8,37 @@ A implementation of FLAG_SECURE in Android and ScreenShieldKit to IOS for preven
 npm install react-native-screenshot-prevention
 ```
 
+### iOS
+
+```sh
+cd ios && pod install
+```
+
 ## Usage
 
 ```js
-import { multiply } from "react-native-screenshot-prevention";
+import { allowScreenCapture, preventScreenCapture } from "react-native-screenshot-prevention";
 
-// ...
+// Enable screenshot (android only)
+allowScreenCapture()
 
-const result = await multiply(3, 7);
+//Disable screenshot (android only)
+preventScreenCapture()
+
+
+useEffect(() => {
+   // Function to execute when user did a screenshot(ios only)
+   const onScreenshot = () => {
+      console.log("Hey, screenshot detected!")   
+   }
+    
+   // Its important have and "unsubcribe" to remove listener from screen is dismonted
+   const unsubscribe = addScreenshotListener(onScreenshot);
+  
+   return () => { 
+       unsubscribe()
+   }
+}, [])
 ```
 
 ## Contributing
