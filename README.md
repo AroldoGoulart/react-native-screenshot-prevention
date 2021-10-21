@@ -33,7 +33,7 @@ useEffect(() => {
       console.log("Hey, screenshot detected!")   
    }
     
-   // Its important have and "unsubcribe" to remove listener from screen is dismonted
+   // Its important have an "unsubscribe" to remove listener from screen is dismounted
    const unsubscribe = addScreenshotListener(onScreenshot);
   
    return () => { 
