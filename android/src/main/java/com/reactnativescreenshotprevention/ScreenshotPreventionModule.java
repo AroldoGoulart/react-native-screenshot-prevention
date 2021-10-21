@@ -45,13 +45,11 @@ public class ScreenshotPreventionModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void allowScreenCapture() {
-      Log.d("ScreenshotPrevention:", "LOCK DEVICE FOR SCREENSHOT");
       flagChange(false);
     }
 
     @ReactMethod
     public void preventScreenCapture(){
-      Log.d("ScreenshotPrevention:", "UNLOCK DEVICE FOR SCREENSHOT");
       flagChange(true);
     }
 }
