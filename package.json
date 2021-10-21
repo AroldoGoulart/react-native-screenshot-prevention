@@ -33,10 +33,25 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "mobile",
+    "screenshot",
+    "ios detect screenshot",
+    "android block screenshot",
+    "block screenshot",
+    "detect screenshot"
   ],
-  "repository": "https://github.com/SnowLew/react-native-screenshot-prevention",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SnowLew/react-native-screenshot-prevention",
+  },
   "author": "Aroldo Goulart <aroldogooulart@gmail.com> (https://github.com/SnowLew)",
+  "contributors": [{
+    "name" : "Jaqueline Gonzaga",
+    "url" : "https://github.com/gonzagajaque",
+    "email": "jaquelinesgonzaga@gmail.com"
+  }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SnowLew/react-native-screenshot-prevention/issues"
