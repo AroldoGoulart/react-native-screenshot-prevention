@@ -1,5 +1,6 @@
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 
-@interface ScreenshotPrevention : NSObject <RCTBridgeModule>
+@interface ScreenshotPrevention : RCTEventEmitter <RCTBridgeModule>
 
 @end

@@ -3,17 +3,33 @@
 @implementation ScreenshotPrevention
 
 RCT_EXPORT_MODULE()
+- (NSArray<NSString *> *)supportedEvents {
+    return @[@"UIApplicationUserDidTakeScreenshotNotification"];
+}
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(nonnull NSNumber*)a withB:(nonnull NSNumber*)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
-{
-  NSNumber *result = @([a floatValue] * [b floatValue]);
+// React Method
+- (void)startObserving {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [
+      center addObserver:self
+      selector:@selector(sendEvent:)
+      name:UIApplicationUserDidTakeScreenshotNotification
+      object:nil
+    ];
+}
 
-  resolve(result);
+// React Method
+- (void)stopObserving {
+    [
+      [NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// React Method
+- (void)sendEvent:(NSNotification *)notification {
+    [
+      self sendEventWithName:notification.name
+      body:nil
+    ];
 }
 
 @end

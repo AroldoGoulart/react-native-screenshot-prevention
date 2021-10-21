@@ -22,13 +22,31 @@ public class ScreenshotPreventionModule extends ReactContextBaseJavaModule {
         return NAME;
     }
 
+    private void flagChange(final boolean mount) {
+        final Activity activity = getCurrentActivity();
 
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
-    @ReactMethod
-    public void multiply(int a, int b, Promise promise) {
-        promise.resolve(a * b);
+        if(activity != null){
+            activity.runOnUiThread(() -> {
+                mounted = mount;
+                if(mount){
+                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+                }
+                else{
+                    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+                }
+            });
+        }
     }
 
-    public static native int nativeMultiply(int a, int b);
+    @ReactMethod
+    public void allowScreenCapture() {
+      Log.d(TAG, "LOCK DEVICE FOR SCREENSHOT");
+      flagChange(false);
+    }
+
+    @ReactMethod
+    public void preventScreenCapture(){
+      Log.d(TAG, "UNLOCK DEVICE FOR SCREENSHOT");
+      flagChange(true);
+    }
 }
