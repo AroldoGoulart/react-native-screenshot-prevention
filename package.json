@@ -156,5 +156,6 @@
         }
       ]
     ]
-  }
+  },
+  "enginesStrict": true
 }
