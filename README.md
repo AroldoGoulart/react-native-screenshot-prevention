@@ -1,8 +1,7 @@
-![](https://img.shields.io/chocolatey/dt/react-native-screenshot-prevention?style=flat-square)
 ![](https://img.shields.io/bundlephobia/min/react-native-screenshot-prevention)
 # react-native-screenshot-prevention
 
-A simple implementation of FLAG_SECURE in Android and ScreenShieldKit to IOS for prevent screenshots
+A simple implementation of FLAG_SECURE in Android and UIApplicationUserDidTakeScreenshotNotification IOS for prevent screenshots
 
 ## Installation
 
@@ -34,7 +33,7 @@ useEffect(() => {
       console.log("Hey, screenshot detected!")   
    }
     
-   // Its important have and "unsubcribe" to remove listener from screen is dismonted
+   // Its important have an "unsubscribe" to remove listener from screen is dismounted
    const unsubscribe = addScreenshotListener(onScreenshot);
   
    return () => { 
