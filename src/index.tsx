@@ -21,8 +21,12 @@ const ScreenshotPrevention = NativeModules.ScreenshotPrevention
 
 const detectorEventEmitter = new NativeEventEmitter(ScreenshotPrevention);
 
-// private
-const commonAddScreenshotListener = (listener: () => void): Unsubscribe => {
+// @IOS only
+export const addScreenshotListener = (listener: Unsubscribe): Unsubscribe => {
+  if (Platform.OS != 'ios') {
+    return () => { }
+  }
+
   const eventSubscription = detectorEventEmitter.addListener(
     EventsName.UserDidTakeScreenshot,
     () => listener(),
@@ -32,51 +36,20 @@ const commonAddScreenshotListener = (listener: () => void): Unsubscribe => {
   return () => {
     eventSubscription.remove();
   };
-};
-
-// private
-const getListenersCount = (): number => {
-  return (
-    // React Native 0.64+
-    // @ts-ignore
-    detectorEventEmitter.listenerCount?.(EventsName.UserDidTakeScreenshot) ??
-    // React Native < 0.64
-    // @ts-ignore
-    detectorEventEmitter.listeners?.(EventsName.UserDidTakeScreenshot).length ??
-    0
-  );
-};
-
-// @IOS only
-export const addScreenshotListener = Platform.select<
-  (listener: () => void) => Unsubscribe
->
-  ({
-    default: (): Unsubscribe => () => { },
-    ios: commonAddScreenshotListener,
-    android: (listener: () => void): Unsubscribe => {
-      if (getListenersCount() === 0) {
-        ScreenshotPrevention.startScreenshotDetection();
-      }
-
-      const unsubscribe: Unsubscribe = commonAddScreenshotListener(listener);
-
-      return () => {
-        unsubscribe();
-
-        if (getListenersCount() === 0) {
-          ScreenshotPrevention.stopScreenshotDetection();
-        }
-      };
-    },
-  });
+}
 
 // @Android only
 export function allowScreenCapture(): void {
-  return ScreenshotPrevention.allowScreenCapture()
+  Platform.select({
+    android: () => ScreenshotPrevention.allowScreenCapture(),
+    default: () => { }
+  })
 }
 // @Android only
 export function preventScreenCapture(): void {
-  return ScreenshotPrevention.preventScreenCapture()
+  Platform.select({
+    android: () => ScreenshotPrevention.allowScreenCapture(),
+    default: () => ScreenshotPrevention.preventScreenCapture()
+  })
 }
 
