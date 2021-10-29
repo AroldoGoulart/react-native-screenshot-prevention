@@ -18,7 +18,7 @@ cd ios && pod install
 ## Usage
 
 ```js
-import { allowScreenCapture, preventScreenCapture } from "react-native-screenshot-prevention";
+import { allowScreenCapture, preventScreenCapture, addScreenshotListener } from "react-native-screenshot-prevention";
 
 // Enable screenshot (android only)
 allowScreenCapture()
