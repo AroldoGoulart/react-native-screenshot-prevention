@@ -1,6 +1,6 @@
 {
   "name": "react-native-screenshot-prevention",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A implementation of FLAG_SECURE in Android and ScreenShieldKit to IOS for prevent screenshots",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

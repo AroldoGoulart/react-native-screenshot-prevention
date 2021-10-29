@@ -40,16 +40,14 @@ export const addScreenshotListener = (listener: Unsubscribe): Unsubscribe => {
 
 // @Android only
 export function allowScreenCapture(): void {
-  Platform.select({
-    android: () => ScreenshotPrevention.allowScreenCapture(),
-    default: () => { }
-  })
+  if (Platform.OS === 'android') {
+    ScreenshotPrevention.allowScreenCapture()
+  }
 }
 // @Android only
 export function preventScreenCapture(): void {
-  Platform.select({
-    android: () => ScreenshotPrevention.allowScreenCapture(),
-    default: () => ScreenshotPrevention.preventScreenCapture()
-  })
+  if (Platform.OS === 'android') {
+    ScreenshotPrevention.preventScreenCapture()
+  }
 }
 
